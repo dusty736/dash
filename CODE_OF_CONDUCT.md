@@ -1,30 +1,73 @@
-## Code of Conduct
+# Contributor Covenant Code of Conduct
 
-To this end, we will abide by and enforce this Code of Conduct that clearly outlines the expectations of positive, courteous behaviour, as well as unacceptable behaviour, among team members.
+## Our Pledge
 
-### Examples of positive behaviour between contributors include:
-Being courteous to, and respectful of, other team members
-Use of welcoming and inclusive language 
-Being open to constructive criticism
-Acknowledging that everyone has responsibilities outside of the project and may experience life events that can temporarily hinder their ability to contribute to the project
+In the interest of fostering an open and welcoming environment, we as
+contributors and maintainers pledge to making participation in our project and
+our community a harassment-free experience for everyone, regardless of age, body
+size, disability, ethnicity, gender identity and expression, level of experience,
+education, socio-economic status, nationality, personal appearance, race,
+religion, or sexual identity and orientation.
 
-### Examples of unacceptable behaviour include:
-Personal attacks or insults
-Being inconsiderate of other team members’ time
-Disregard for others’ rights to privacy. This includes taking audio or video recordings, or taking photographs, without prior consent from everyone involved
-Use of sexual or violent language and/or depiction of sexual or violent imagery
-Comments with bias or discimination regarding characteristics such as age, disability, gender identity, personal appearance, race, religion, or sexual orientation 
+## Our Standards
+
+Examples of behavior that contributes to creating a positive environment
+include:
+
+* Using welcoming and inclusive language
+* Being respectful of differing viewpoints and experiences
+* Gracefully accepting constructive criticism
+* Focusing on what is best for the community
+* Showing empathy towards other community members
+
+Examples of unacceptable behavior by participants include:
+
+* The use of sexualized language or imagery and unwelcome sexual attention or
+  advances
+* Trolling, insulting/derogatory comments, and personal or political attacks
+* Public or private harassment
+* Publishing others' private information, such as a physical or electronic
+  address, without explicit permission
+* Other conduct which could reasonably be considered inappropriate in a
+  professional setting
+
+## Our Responsibilities
+
+Project maintainers are responsible for clarifying the standards of acceptable
+behavior and are expected to take appropriate and fair corrective action in
+response to any instances of unacceptable behavior.
+
+Project maintainers have the right and responsibility to remove, edit, or
+reject comments, commits, code, wiki edits, issues, and other contributions
+that are not aligned to this Code of Conduct, or to ban temporarily or
+permanently any contributor for other behaviors that they deem inappropriate,
+threatening, offensive, or harmful.
 
 ## Scope
 
-The Scope of this Code of Conduct includes any physical and virtual spaces where collaboration takes place. This includes, but is not limited to, team meetings, GitHub repositories, and other platforms for communication such as email, Slack, and Zoom. 
+This Code of Conduct applies both within project spaces and in public spaces
+when an individual is representing the project or its community. Examples of
+representing a project or community include using an official project e-mail
+address, posting via an official social media account, or acting as an appointed
+representative at an online or offline event. Representation of a project may be
+further defined and clarified by project maintainers.
 
 ## Enforcement
 
-When conflicts or potential violations of the Code of Conduct arise, these issues are to be brought to attention during team meetings for an open discussion. In the event that the conflict between group members is not resolved through normal means, the conflict can be brought to the attention of the MDS Instructor Team for peaceful resolution and mediation. 
- 
-## Acknowledgement
+Instances of abusive, harassing, or otherwise unacceptable behavior may be
+reported by contacting the project team. All
+complaints will be reviewed and investigated and will result in a response that
+is deemed necessary and appropriate to the circumstances. The project team is
+obligated to maintain confidentiality with regard to the reporter of an incident.
+Further details of specific enforcement policies may be posted separately.
 
-This Code of Conduct was adapted from UBC DSCI 100 Code of Conduct, available through 
-https://github.com/UBC-DSCI/dsci-100/blob/master/CODE_OF_CONDUCT.md, as well as tidyverse.org Code of Conduct, 
-available through https://github.com/tidyverse/tidyverse.org/blob/master/CODE_OF_CONDUCT.md.
+Project maintainers who do not follow or enforce the Code of Conduct in good
+faith may face temporary or permanent repercussions as determined by other
+members of the project's leadership.
+
+## Attribution
+
+This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4,
+available at https://www.contributor-covenant.org/version/1/4/code-of-conduct.html
+
+[homepage]: https://www.contributor-covenant.org
