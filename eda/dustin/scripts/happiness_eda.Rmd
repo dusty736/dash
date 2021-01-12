@@ -1,0 +1,70 @@
+---
+author: Dustin Burnham
+date: January 11, 2021
+title: "World Happiness EDA"
+output: pdf_notebook
+---
+
+```{r - read in data}
+happy_2015 <- janitor::clean_names(read.csv("../data/2015.csv"))
+happy_2016 <- janitor::clean_names(read.csv("../data/2016.csv"))
+happy_2017 <- janitor::clean_names(read.csv("../data/2017.csv"))
+happy_2018 <- janitor::clean_names(read.csv("../data/2018.csv"))
+happy_2019 <- janitor::clean_names(read.csv("../data/2019.csv"))
+```
+
+```{r - Clean columns}
+final_columns <- c("country", "happiness_score", "happiness_rank", "gdp_per_capita",
+                   "freedom", "perception_of_government", "generosity", "life_expectancy")
+
+names(happy_2015) <- c("country", "region", "happiness_rank", "happiness_score",
+                       "standard_error", "gdp_per_capita", "family", "life_expectancy",
+                       "freedom", "perception_of_government", "generosity", "disytopia_residual")
+
+names(happy_2016) <- c("country", "region", "happiness_rank", "happiness_score",
+                       "lower", "upper", "gdp_per_capita", "family", "life_expectancy",
+                       "freedom", "perception_of_government", "generosity", "dystopia_residual")
+
+names(happy_2017) <- c("country", "happiness_rank", "happiness_score", "upper", "lower", 
+                       "gdp_per_capita", "family", "life_expectancy", "freedom", 
+                       "generosity", "perception_of_government", "dystopia_residual")
+
+names(happy_2018) <- c("happiness_rank", "country", "happiness_score", 
+                       "gdp_per_capita", "social_support", "life_expectancy", "freedom", 
+                       "generosity", "perception_of_government")
+
+names(happy_2019) <- c("happiness_rank", "country", "happiness_score", 
+                       "gdp_per_capita", "social_support", "life_expectancy", "freedom", 
+                       "generosity", "perception_of_government")
+```
+
+
+```{r - Select Features}
+happy_2015 <- happy_2015[final_columns]
+happy_2016 <- happy_2016[final_columns]
+happy_2017 <- happy_2017[final_columns]
+happy_2018 <- happy_2018[final_columns]
+happy_2019 <- happy_2019[final_columns]
+```
+
+```{r - Add Year Column}
+happy_2015['year'] <- 2015
+happy_2016['year'] <- 2016
+happy_2017['year'] <- 2017
+happy_2018['year'] <- 2018
+happy_2019['year'] <- 2019
+```
+
+```{r - Combine into dataframe}
+happy_total <- rbind(happy_2015, happy_2016, happy_2017, happy_2018, happy_2019)
+```
+
+```{r - Save combined data}
+write.csv(happy_total, "../data/combined_happiness.csv")
+```
+
+```{r - Generate Profile}
+dataMaid::makeDataReport(happy_total, file = here::here("eda", "dustin", "images",
+                                                        "profile_happy_full.Rmd"), replace = TRUE)
+```
+
