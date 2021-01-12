@@ -5,6 +5,8 @@ title: "World Happiness EDA"
 output: pdf_notebook
 ---
 
+# Data Source: https://www.kaggle.com/unsdsn/world-happiness
+
 ```{r - read in data}
 happy_2015 <- janitor::clean_names(read.csv("../data/2015.csv"))
 happy_2016 <- janitor::clean_names(read.csv("../data/2016.csv"))
