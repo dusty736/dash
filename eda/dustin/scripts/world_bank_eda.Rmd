@@ -1,0 +1,106 @@
+---
+author: Dustin Burnham
+date: January 12, 2021
+title: "World Bank Data Pull"
+output: pdf_notebook
+---
+
+# Data Source: https://databank.worldbank.org/home.aspx
+
+```{r - Load Packages}
+library(tidyverse)
+library(WDI)
+```
+
+
+```{r - Readin Data}
+edu_primary_female <- WDI(indicator = "SE.PRM.CUAT.FE.ZS", extra = TRUE, start = 1975, end = 2016)
+life_expectancy_female <-  WDI(indicator = "SP.DYN.LE00.FE.IN", extra = TRUE, start = 1975, end = 2016)
+adult_literacy_female <- WDI(indicator = "SE.ADT.LITR.FE.ZS", extra = TRUE, start = 1975, end = 2016)
+alcohol_per_capita_female <- WDI(indicator = "SH.ALC.PCAP.FE.LI", extra = TRUE, start = 1975, end = 2016)
+unemployment_female <- WDI(indicator = "SL.UEM.TOTL.FE.ZS", extra = TRUE, start = 1975, end = 2016)
+
+edu_primary_male <- WDI(indicator = "SE.PRM.CUAT.MA.ZS", extra = TRUE, start = 1975, end = 2016)
+life_expectancy_male <-  WDI(indicator = "SP.DYN.LE00.MA.IN", extra = TRUE, start = 1975, end = 2016)
+adult_literacy_male <- WDI(indicator = "SE.ADT.LITR.MA.ZS", extra = TRUE, start = 1975, end = 2016)
+alcohol_per_capita_male <- WDI(indicator = "SH.ALC.PCAP.MA.LI", extra = TRUE, start = 1975, end = 2016)
+unemployment_male <- WDI(indicator = "SL.UEM.TOTL.MA.ZS", extra = TRUE, start = 1975, end = 2016)
+```
+
+
+```{r - Function for cleaning data}
+data_clean <- function(df, col_name, sex) {
+  # Add sex column
+  df['sex'] <- sex
+
+  # Clean data
+  df <- df %>% 
+    filter(capital != "") %>% 
+    rename({{ col_name }} := 3) %>% 
+    select(c(country, year, {{ col_name }}, sex))
+  return(df)
+}
+```
+
+
+```{r - Get wanted/cleaned columns}
+adult_literacy_female <- data_clean(adult_literacy_female, "literacy_rate_adult", "Female")
+adult_literacy_male <- data_clean(adult_literacy_male, "literacy_rate_adult", "Male")
+adult_literacy <- rbind(adult_literacy_female, adult_literacy_male)
+
+alcohol_per_capita_female <- data_clean(alcohol_per_capita_female, "alcohol_cons_per_cap", "Female")
+alcohol_per_capita_male <- data_clean(alcohol_per_capita_male, "alcohol_cons_per_cap", "Male")
+alcohol_per_capita <- rbind(alcohol_per_capita_female, alcohol_per_capita_male)
+
+edu_primary_female <- data_clean(edu_primary_female, "edu_primary_rate", "Female")
+edu_primary_male <- data_clean(edu_primary_male, "edu_primary_rate", "Male")
+edu_primary <- rbind(edu_primary_female, edu_primary_male)
+
+life_expectancy_female <- data_clean(life_expectancy_female, "life_exp_birth", "Female")
+life_expectancy_male <- data_clean(life_expectancy_male, "life_exp_birth", "Male")
+life_expectancy <- rbind(life_expectancy_female, life_expectancy_male)
+
+unemployment_female <- data_clean(unemployment_female, "unemployment_rate", "Female")
+unemployment_male <- data_clean(unemployment_male, "unemployment_rate", "Male")
+unemployment <- rbind(unemployment_female, unemployment_male)
+```
+
+
+```{r - Read in obesity data}
+obesity <- read.csv(here::here("eda", "dustin", "data", "obesity-cleaned.csv"))
+```
+
+
+```{r - clean obesity data}
+obesity <- obesity %>% 
+  filter(Sex != "Both sexes") %>% 
+  select(-X)
+
+obesity <- janitor::clean_names(obesity)
+```
+
+
+```{r - merge data}
+obesity <- plyr::join(obesity, adult_literacy, by = c("country", "year", "sex"))
+obesity <- plyr::join(obesity, alcohol_per_capita, by = c("country", "year", "sex"))
+obesity <- plyr::join(obesity, edu_primary, by = c("country", "year", "sex"))
+obesity <- plyr::join(obesity, life_expectancy, by = c("country", "year", "sex"))
+obesity <- plyr::join(obesity, unemployment, by = c("country", "year", "sex"))
+```
+
+```{r - Create Report}
+dataMaid::makeDataReport(obesity, file = here::here("eda", "dustin", "images",
+                                                        "profile_world_bank.Rmd"), replace = TRUE)
+```
+
+
+
+
+
+
+
+
+
+
+
+
